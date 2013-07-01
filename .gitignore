@@ -1,20 +1,43 @@
+#binaries
+*.so
+*.o
+*.lib
+
+
 # built application files
 *.apk
 *.ap_
 
+
 # files for the dex VM
 *.dex
+
 
 # Java class files
 *.class
 
+
 # generated files
 bin/
 gen/
+obj/
 
-# Local configuration file (sdk path, etc)
+
+#local configuration files
 local.properties
 
-# Eclipse project files
+
+#Eclipse Project files
 .classpath
 .project
+
+
+#android-studio
+.idea/
+clubapp.iml
+
+
+#OS X Treats
+.DS_Store
+
+
