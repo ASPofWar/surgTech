@@ -30,6 +30,7 @@ local.properties
 #Eclipse Project files
 .classpath
 .project
+<<<<<<< HEAD
 
 
 #android-studio
@@ -41,3 +42,6 @@ clubapp.iml
 .DS_Store
 
 
+=======
+.idea
+>>>>>>> 9615a9b533f7f43107df45b45e1811d8b299fcca
