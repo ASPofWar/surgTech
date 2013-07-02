@@ -99,6 +99,9 @@ public class MainActivity extends FragmentActivity {
 
         //Populate List View
         final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+
+        //This line is giving you a null pointer exception.
+        //This is because findViewById can't find a view with the id R.id.listView1
         listview.setAdapter(adapter);
 
 
