@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +24,13 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
-public class ReviewSectionFragment extends Fragment
+public class ReviewSectionFragment extends ListFragment
 {
     SimpleAdapter listAdapter;
     final ArrayList<HashMap<String,String>> listItems = new ArrayList<HashMap<String,String>>();
     final ArrayList<String> directoryNames = new ArrayList<String>();
     final static String SECTION_NAME = "sn";
-
+    String[] assetDirs;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +46,7 @@ public class ReviewSectionFragment extends Fragment
 
         AssetManager assetManager = context.getAssets();
         //Esablishes string to be refresnced for our files.
-        String[] assetDirs = null;
+        assetDirs = null;
         try {
             assetDirs = assetManager.list("sections");
         } catch (IOException e) {
@@ -74,21 +75,17 @@ public class ReviewSectionFragment extends Fragment
             directoryNames.add(dirName);
         }
 
-
-        ListView listView = (ListView)view.findViewById(R.id.sectionList);
-        listView.setAdapter(listAdapter);
-        listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
-            {
-                Toast.makeText(context, "Hello?", 1000);
-            }
-
-        });
+        setListAdapter(listAdapter);
 
         listAdapter.notifyDataSetChanged();
 
         return view;
+    }
+
+    @Override
+    public void onListItemClick(ListView listView, View view, int position, long id)
+    {
+        Toast.makeText(view.getContext(), assetDirs[position], 1000).show();
     }
 
     private static String streamToString(InputStream stream)
