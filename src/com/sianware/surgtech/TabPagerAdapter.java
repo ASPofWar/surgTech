@@ -1,10 +1,10 @@
 package com.sianware.surgtech;
 
-import java.util.ArrayList;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import java.util.ArrayList;
 
 public class TabPagerAdapter extends FragmentPagerAdapter{
 	public final ArrayList<Fragment> fragments = new ArrayList<Fragment>();
