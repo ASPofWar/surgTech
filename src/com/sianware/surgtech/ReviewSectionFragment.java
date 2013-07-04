@@ -1,7 +1,9 @@
 package com.sianware.surgtech;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ import java.util.Scanner;
 
 public class ReviewSectionFragment extends ListFragment
 {
+    MainActivity activity = null;
+
     SimpleAdapter listAdapter;
     final ArrayList<HashMap<String,String>> listItems = new ArrayList<HashMap<String,String>>();
     final ArrayList<String> directoryNames = new ArrayList<String>();
@@ -39,21 +42,18 @@ public class ReviewSectionFragment extends ListFragment
         View view = inflater.inflate(R.layout.review_list, container, false);
         final Context context = inflater.getContext();
 
+        //References item_section file and is used as a container for our section names based of directories.
         listAdapter = new SimpleAdapter(context, listItems, R.layout.item_section,
                 new String[]{SECTION_NAME}, new int[]{R.id.sectionName});
-        //listAdapter = new SimpleAdapter(context, listItems, R.layout.item_section,
-        //        new String[]{}, new int[]{});
 
         AssetManager assetManager = context.getAssets();
-        //Esablishes string to be refresnced for our files.
+        //Establishes string to be referenced for our files.
         assetDirs = null;
         try {
             assetDirs = assetManager.list("sections");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
 
         for(int i = 0; i < assetDirs.length; i++)
@@ -76,16 +76,23 @@ public class ReviewSectionFragment extends ListFragment
         }
 
         setListAdapter(listAdapter);
-
         listAdapter.notifyDataSetChanged();
-
         return view;
+
     }
 
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id)
     {
-        Toast.makeText(view.getContext(), assetDirs[position], 1000).show();
+        if(activity == null) return;
+        activity.GotoImageFragment(directoryNames.get(position));
+    }
+
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        this.activity = (MainActivity)activity;
     }
 
     private static String streamToString(InputStream stream)

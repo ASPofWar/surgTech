@@ -1,11 +1,16 @@
 package com.sianware.surgtech;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.HashMap;
 
@@ -14,6 +19,7 @@ public class MainActivity extends FragmentActivity {
 	
 	//Variable for viewPager
 	SomewhatSwipeableViewPager viewPager;
+    TabPagerAdapter pagerAdapter;
 	HashMap<String, TabInfo> tabInfoMap = new HashMap<String, TabInfo>();
 	
 	//Listener for User input
@@ -45,7 +51,7 @@ public class MainActivity extends FragmentActivity {
 		Fragment quizFragment = new QuizFragment();
 		
 		
-		TabPagerAdapter pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
+		pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
 		pagerAdapter.addFragment(reviewFragment, "Review");
 		pagerAdapter.addFragment(quizFragment, "Quizs");
 		
@@ -55,13 +61,7 @@ public class MainActivity extends FragmentActivity {
 		viewPager.setCurrentItem(0);
 		viewPager.setOnPageChangeListener(pageChangeListener);
 
-
-
     }
-
-
-
-
 
         @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,5 +69,28 @@ public class MainActivity extends FragmentActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
+    @Override
+    public void onBackPressed()
+    {
+        if(viewPager.getCurrentItem() == 1)
+        {
+            viewPager.setCurrentItem(0,true);
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+
+    public void GotoImageFragment(String dirName)
+    {
+        //Just Shows the xml does not do the code....
+        //Fragment imageFragment = new ImageFragment(dirName);
+        //pagerAdapter.fragments.set(1,imageFragment);
+        //viewPager.setCurrentItem(1,true);
+        Intent i = new Intent(getApplicationContext(), ImageFragment.class);
+        startActivity(i);
+    }
 
 }
