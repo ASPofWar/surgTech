@@ -86,11 +86,10 @@ public class MainActivity extends FragmentActivity {
     public void GotoImageFragment(String dirName)
     {
         //Just Shows the xml does not do the code....
-        //Fragment imageFragment = new ImageFragment(dirName);
-        //pagerAdapter.fragments.set(1,imageFragment);
-        //viewPager.setCurrentItem(1,true);
-        Intent i = new Intent(getApplicationContext(), ImageFragment.class);
-        startActivity(i);
+        Fragment imageFragment = new ImageFragment(dirName);
+        pagerAdapter.fragments.set(1,imageFragment);
+        viewPager.setCurrentItem(1,true);
+
     }
 
 }

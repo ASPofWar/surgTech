@@ -13,7 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -28,7 +31,7 @@ public class ImageFragment extends ListFragment
     public String currentDir;
     String[] assetDirs;
     InputStream imagesFiles = null;
-    final ArrayList<HashMap<String,String>> imageItems = new ArrayList<HashMap<String,String>>();
+    final ArrayList<HashMap<String,ImageView>> imageItems = new ArrayList<HashMap<String,ImageView>>();
     final ArrayList<String> directoryNames = new ArrayList<String>();
     final static String SECTION_NAME = "sn";
     SimpleAdapter imageAdapter;
@@ -48,6 +51,8 @@ public class ImageFragment extends ListFragment
         View view = inflater.inflate(R.layout.review_images, container, false);
         final Context context = inflater.getContext();
 
+
+
         //References item_section file and is used as a container for our section names based of directories.
         imageAdapter = new SimpleAdapter(context, imageItems, R.layout.instru_files,
                 new String[]{SECTION_NAME}, new int[]{R.id.imageView});
@@ -60,7 +65,7 @@ public class ImageFragment extends ListFragment
         for(int i = 0; i < assetDirs.length; i++)
         {
 
-            HashMap<String,String> item = new HashMap<String,String>();
+            HashMap<String,ImageView> item = new HashMap<String,ImageView>();
             ImageView images = new ImageView(context);
             images.setId(i);
 
@@ -78,7 +83,7 @@ public class ImageFragment extends ListFragment
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            item.put(imagesFiles.toString(), images.toString());
+            item.put(imagesFiles.toString(), images);
             imageItems.add(item);
             directoryNames.add(dirName);
 
