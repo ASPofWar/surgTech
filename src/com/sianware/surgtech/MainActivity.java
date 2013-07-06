@@ -1,16 +1,12 @@
 package com.sianware.surgtech;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.View;
-import android.widget.ImageView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import java.util.HashMap;
 
@@ -21,6 +17,8 @@ public class MainActivity extends FragmentActivity {
 	SomewhatSwipeableViewPager viewPager;
     TabPagerAdapter pagerAdapter;
 	HashMap<String, TabInfo> tabInfoMap = new HashMap<String, TabInfo>();
+
+    public static String SELECTED_REVIEW_SECTION = "rs";
 	
 	//Listener for User input
 	final OnPageChangeListener pageChangeListener = new OnPageChangeListener()
@@ -86,10 +84,18 @@ public class MainActivity extends FragmentActivity {
     public void GotoImageFragment(String dirName)
     {
         //Just Shows the xml does not do the code....
-        Fragment imageFragment = new ImageFragment(dirName);
-        pagerAdapter.fragments.set(1,imageFragment);
-        viewPager.setCurrentItem(1,true);
+//        Fragment imageFragment = new ImageFragment(dirName);
+//        pagerAdapter.fragments.set(1,imageFragment);
+//        viewPager.setCurrentItem(1,true);
 
+        Fragment imageFrag = new ImageFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(SELECTED_REVIEW_SECTION, dirName);
+        imageFrag.setArguments(bundle);
+        FragmentManager fragMan = getSupportFragmentManager();
+        FragmentTransaction transaction = fragMan.beginTransaction();
+        transaction.replace(R.id.pager, imageFrag);
+        transaction.commit();
     }
 
 }

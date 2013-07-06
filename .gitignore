@@ -43,3 +43,9 @@ out/
 #android-studio
 .idea/
 *.iml
+
+
+
+
+#For this project only
+assets/
