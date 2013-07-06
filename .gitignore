@@ -43,6 +43,7 @@ out/
 #android-studio
 .idea/
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.iml
 
 
@@ -50,6 +51,9 @@ out/
 
 #For this project only
 assets/
+=======
+*.iml
+>>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
 =======
 *.iml
 >>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3

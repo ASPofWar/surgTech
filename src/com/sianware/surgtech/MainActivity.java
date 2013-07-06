@@ -1,6 +1,7 @@
 package com.sianware.surgtech;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +10,8 @@ import android.view.Menu;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 =======
+=======
+>>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +23,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+<<<<<<< HEAD
+>>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
+=======
 >>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
 
 import java.util.HashMap;
@@ -32,8 +38,11 @@ public class MainActivity extends FragmentActivity {
     TabPagerAdapter pagerAdapter;
 	HashMap<String, TabInfo> tabInfoMap = new HashMap<String, TabInfo>();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public static String SELECTED_REVIEW_SECTION = "rs";
+=======
+>>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
 =======
 >>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
 	
@@ -102,6 +111,7 @@ public class MainActivity extends FragmentActivity {
     {
         //Just Shows the xml does not do the code....
 <<<<<<< HEAD
+<<<<<<< HEAD
 //        Fragment imageFragment = new ImageFragment(dirName);
 //        pagerAdapter.fragments.set(1,imageFragment);
 //        viewPager.setCurrentItem(1,true);
@@ -115,10 +125,15 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.pager, imageFrag);
         transaction.commit();
 =======
+=======
+>>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
         Fragment imageFragment = new ImageFragment(dirName);
         pagerAdapter.fragments.set(1,imageFragment);
         viewPager.setCurrentItem(1,true);
 
+<<<<<<< HEAD
+>>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
+=======
 >>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
     }
 
