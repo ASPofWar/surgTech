@@ -7,14 +7,6 @@
     <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
             android:id="@android:id/list"
-=======
-            android:id="@+id/listView"
->>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
-=======
-            android:id="@+id/listView"
->>>>>>> a0ee1bf70ca6635225ff34e966da931af93041e3
             android:layout_gravity="center"/>
 </LinearLayout>

@@ -1,11 +1,12 @@
 package com.sianware.surgtech;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
 import java.util.HashMap;
@@ -17,11 +18,10 @@ public class MainActivity extends FragmentActivity {
 	SomewhatSwipeableViewPager viewPager;
     TabPagerAdapter pagerAdapter;
 	HashMap<String, TabInfo> tabInfoMap = new HashMap<String, TabInfo>();
-
     public static String SELECTED_REVIEW_SECTION = "rs";
 	
 	//Listener for User input
-	final OnPageChangeListener pageChangeListener = new OnPageChangeListener()
+	final ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener()
 	{
 
 		@Override
@@ -51,7 +51,7 @@ public class MainActivity extends FragmentActivity {
 		
 		pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
 		pagerAdapter.addFragment(reviewFragment, "Review");
-		pagerAdapter.addFragment(quizFragment, "Quizs");
+		pagerAdapter.addFragment(quizFragment, "Quizzes");
 		
 		viewPager = (SomewhatSwipeableViewPager)findViewById(R.id.pager);
 		viewPager.setAdapter(pagerAdapter);
@@ -96,6 +96,7 @@ public class MainActivity extends FragmentActivity {
         FragmentTransaction transaction = fragMan.beginTransaction();
         transaction.replace(R.id.pager, imageFrag);
         transaction.commit();
+
 
     }
 

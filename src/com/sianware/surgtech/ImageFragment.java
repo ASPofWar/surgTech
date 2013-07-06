@@ -3,12 +3,13 @@ package com.sianware.surgtech;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 import java.io.IOException;
@@ -20,27 +21,31 @@ import java.util.HashMap;
  * Created by Aaron on 7/3/13.
  */
 public class ImageFragment extends ListFragment
+
 {
 
     public String currentDir;
+
     String[] imageRes;
     InputStream imagesFiles = null;
-    final ArrayList<HashMap<String,ImageView>> listItems = new ArrayList<HashMap<String,ImageView>>();
+    final ArrayList<HashMap<String,Drawable>> listItems = new ArrayList<HashMap<String,Drawable>>();
     // final ArrayList<String> directoryNames = new ArrayList<String>(); //Nothing for now, eventually hold the description for each image
     final static String IMAGE_RESOURCE = "ir";
     SimpleAdapter imageAdapter;
 
     public ImageFragment()
     {
-        //currentDir = dirName;
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+
             Bundle savedInstanceState)
     {
         Bundle bundle = this.getArguments();
         String sectionDirectory = bundle.getString(MainActivity.SELECTED_REVIEW_SECTION);
+
 
         View view = inflater.inflate(R.layout.review_images, container, false);
         final Context context = inflater.getContext();
@@ -57,15 +62,22 @@ public class ImageFragment extends ListFragment
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        for(int i = 0; i < imageRes.length; i++)
+        {
+            Log.d("imageRes",imageRes[i]);
+        }
 
         for(int i = 0; i < imageRes.length; i++)
         {
-            HashMap<String,String> item = new HashMap<String,String>();
-            String dirName = imageRes[i];
-
-            Drawable d = Drawable.createFromPath(context.getAssets()
-             = context.getAssets().open("sections/" + dirName + "/manifest.txt");
+            HashMap<String,Drawable> item = new HashMap<String,Drawable>();
+            Drawable d = null;
+            Log.w("####Full Path####",context.getFilesDir() + "/sections/" + sectionDirectory + "/" + imageRes[i]);
+            //Drawable d = Drawable.createFromPath(context.getAssets()+ "/sections/" + sectionDirectory + "/" + imageRes);
+            try {
+                d = Drawable.createFromStream(context.getAssets().open(context.getFilesDir() + "/sections/" + sectionDirectory + "/" + imageRes[i]), null);
+            } catch(IOException e){
+                e.printStackTrace();
+            }
 
 //            String sectionName = "";
 //            try {
@@ -74,7 +86,7 @@ public class ImageFragment extends ListFragment
 //                e.printStackTrace();
 //            }
 
-            item.put(IMAGE_RESOURCE, imageResource);
+            item.put(IMAGE_RESOURCE, d);
             listItems.add(item);
             //directoryNames.add(dirName);
         }
